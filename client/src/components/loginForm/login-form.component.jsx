@@ -2,10 +2,9 @@ import Button from "../common/button/button.component"
 import InputLabel from "../common/inputLabel/input-label.component"
 // hooks imports
 import { useState } from "react"
+//import functions
+import { request } from "../../core/axios/axios"
 const defaultFields = {
-  fisrtname: "",
-  lastname: '',
-  username: '',
   email: "",
   password: ''
 }
@@ -15,14 +14,20 @@ const LoginForm = () => {
   const onInputChange = (e) => {
     setFields({ ...fields, [e.target.name]: e.target.value })
   }
+  const loginClick = async () => {
+    try {
+      const data = await request(`auth/login`, 'POST', fields)
+      setFields(defaultFields)
+      console.log(data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
   return (
     <div className="login-form">
-      <InputLabel label='firstname' type='text' name='firstname' inputChange={onInputChange} value={firstname} />
-      <InputLabel label='lastname' type='text' name='lastname' inputChange={onInputChange} value={lastname} />
-      <InputLabel label='username' type='text' name='username' inputChange={onInputChange} value={username} />
       <InputLabel label='email' type='email' name='email' inputChange={onInputChange} value={email} />
       <InputLabel label='password' type='password' name='password' inputChange={onInputChange} value={password} />
-      <Button text={'Login'} backgroundColor={'#2196f3'} />
+      <Button onClick={loginClick} text={'Login'} backgroundColor={'#2196f3'} />
     </div>
   )
 }

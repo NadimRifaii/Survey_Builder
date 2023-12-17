@@ -1,12 +1,40 @@
 import Button from "../common/button/button.component"
 import InputLabel from "../common/inputLabel/input-label.component"
-const SignupForm = () => {
+// hooks imports
+import { useState } from "react"
+//import functions
+import { request } from "../../core/axios/axios"
+const defaultFields = {
+  firstname: "",
+  lastname: '',
+  username: '',
+  email: "",
+  password: '',
+}
+const LoginForm = () => {
+  const [fields, setFields] = useState(defaultFields)
+  const { firstname, lastname, username, email, password } = fields
+  console.log(fields)
+  const onInputChange = (e) => {
+    setFields({ ...fields, [e.target.name]: e.target.value })
+  }
+  const signupClick = async () => {
+    try {
+      const data = await request(`auth/register`, 'POST', fields)
+      setFields({ ...defaultFields })
+    } catch (error) {
+      console.log(error)
+    }
+  }
   return (
-    <div className="sign-up-form">
-      <InputLabel label='email' type='email' name='email' />
-      <InputLabel label='password' type='password' name='password' />
-      <Button text='Signup' backgroundColor={'#f44336'} />
+    <div className="signup-form">
+      <InputLabel label='firstname' type='text' name='firstname' inputChange={onInputChange} value={firstname} />
+      <InputLabel label='lastname' type='text' name='lastname' inputChange={onInputChange} value={lastname} />
+      <InputLabel label='username' type='text' name='username' inputChange={onInputChange} value={username} />
+      <InputLabel label='email' type='email' name='email' inputChange={onInputChange} value={email} />
+      <InputLabel label='password' type='password' name='password' inputChange={onInputChange} value={password} />
+      <Button onClick={signupClick} text={'Signup'} backgroundColor={'#2196f3'} />
     </div>
   )
 }
-export default SignupForm
+export default LoginForm
