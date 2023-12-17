@@ -2,8 +2,10 @@ import Button from "../common/button/button.component"
 import InputLabel from "../common/inputLabel/input-label.component"
 // hooks imports
 import { useState } from "react"
+import { useDispatch, useSelector } from 'react-redux'
 //import functions
 import { request } from "../../core/axios/axios"
+import { setUser, extractUserSlice } from "../../core/redux/user/userSlice"
 const defaultFields = {
   firstname: "",
   lastname: '',
@@ -14,7 +16,9 @@ const defaultFields = {
 const LoginForm = () => {
   const [fields, setFields] = useState(defaultFields)
   const { firstname, lastname, username, email, password } = fields
-  console.log(fields)
+  const dispatch = useDispatch()
+  const user = useSelector(extractUserSlice)
+  console.log(user)
   const onInputChange = (e) => {
     setFields({ ...fields, [e.target.name]: e.target.value })
   }
@@ -22,6 +26,8 @@ const LoginForm = () => {
     try {
       const data = await request(`auth/register`, 'POST', fields)
       setFields({ ...defaultFields })
+      dispatch(setUser(data.user))
+      console.log(user)
     } catch (error) {
       console.log(error)
     }

@@ -2,7 +2,9 @@ import Button from "../common/button/button.component"
 import InputLabel from "../common/inputLabel/input-label.component"
 // hooks imports
 import { useState } from "react"
+import { useDispatch } from 'react-redux'
 //import functions
+import { setUser } from "../../core/redux/user/userSlice"
 import { request } from "../../core/axios/axios"
 const defaultFields = {
   email: "",
@@ -11,6 +13,7 @@ const defaultFields = {
 const LoginForm = () => {
   const [fields, setFields] = useState(defaultFields)
   const { firstname, lastname, username, email, password } = fields
+  const dispatch = useDispatch()
   const onInputChange = (e) => {
     setFields({ ...fields, [e.target.name]: e.target.value })
   }
@@ -18,7 +21,7 @@ const LoginForm = () => {
     try {
       const data = await request(`auth/login`, 'POST', fields)
       setFields(defaultFields)
-      console.log(data)
+      dispatch(setUser(data.user))
     } catch (error) {
       console.log(error)
     }
