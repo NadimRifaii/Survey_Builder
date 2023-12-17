@@ -3,6 +3,7 @@ import InputLabel from "../common/inputLabel/input-label.component"
 // hooks imports
 import { useState } from "react"
 import { useDispatch } from 'react-redux'
+import { useNavigate } from "react-router-dom"
 //import functions
 import { setUser } from "../../core/redux/user/userSlice"
 import { request } from "../../core/axios/axios"
@@ -14,6 +15,7 @@ const LoginForm = () => {
   const [fields, setFields] = useState(defaultFields)
   const { firstname, lastname, username, email, password } = fields
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const onInputChange = (e) => {
     setFields({ ...fields, [e.target.name]: e.target.value })
   }
@@ -22,6 +24,7 @@ const LoginForm = () => {
       const data = await request(`auth/login`, 'POST', fields)
       setFields(defaultFields)
       dispatch(setUser(data.user))
+      navigate('/home')
     } catch (error) {
       console.log(error)
     }
