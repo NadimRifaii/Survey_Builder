@@ -7,8 +7,8 @@ export async function login(req, res) {
     const user = await User.findOne({ email })
     if (!user)
       return res.status(404).json({ message: "User not found" })
-    // const isValidPassword = await bcrypt.compare(password, user.password)
-    const isValidPassword = password == user.password
+    const isValidPassword = await bcrypt.compare(password, user.password)
+    // const isValidPassword = password == user.password
     if (!isValidPassword)
       return res.status(404).json({ message: "Invalid password" })
     const { password: hashedPassword, _id, firstname, lastname, createdAt, updatedAt, __v, ...userDetails } = user.toJSON()//userDetails is username , email
