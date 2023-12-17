@@ -5,4 +5,5 @@ const surveyRouter = express.Router()
 surveyRouter.post('/', createSurvey)
 surveyRouter.get('/', getAllSurveys)
 surveyRouter.post('/assignSurvey', createUserSurvey)
+surveyRouter.get('/userSurveys', getUserSurveys)
 export default surveyRouter

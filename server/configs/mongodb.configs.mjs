@@ -1,5 +1,6 @@
 import mongoose from "mongoose"
 const MONG_URL = process.env.MONG_URL
+const MONG_URL_LOCAL = `mongodb://localhost:27017/SurveyDB`
 async function connectToMongo() {
   mongoose.connection.once('open', () => {
     console.log('Mongo is ready')

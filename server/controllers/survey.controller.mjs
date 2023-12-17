@@ -1,4 +1,5 @@
 import Survey from '../models/survey.model.mjs'
+import UserSurvey from '../models/user-survey.model.mjs'
 export async function createSurvey(req, res) {
   if (req.user.role != 'admin')
     return res.status(403).json({ message: "Your are not authorized to do this action" })
@@ -24,5 +25,12 @@ export async function getAllSurveys(req, res) {
   return res.status(200).json({ surveys })
 }
 export async function getUserSurveys(req, res) {
-
+  const userId = req.user._id;
+  const userSurveys = await UserSurvey.find({ userId })
+  const surveys = []
+  for (let userSurvey of userSurveys) {
+    const survey = await Survey.findOne({ _id: userSurvey.surveyId })
+    surveys.push(survey)
+  }
+  return res.status(200).json({ surveys })
 }
