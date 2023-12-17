@@ -1,8 +1,12 @@
+// hooks imports
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { extractUserSlice } from '../../core/redux/user/userSlice.js';
 import { useEffect, useState } from 'react';
-
+// functions imports
+import { extractUserSlice } from '../../core/redux/user/userSlice.js';
+// components imports
+import Dashboard from '../../pages/dashboard/dashboard.component.jsx';
+import UserHome from '../../pages/userHome/user-home.component.jsx';
 const AuthComponent = () => {
   const user = useSelector(extractUserSlice);
   const navigate = useNavigate();
@@ -18,6 +22,6 @@ const AuthComponent = () => {
     }
   }, [user, navigate]);
 
-  return authenticated ? role == 'user' ? <h1>Hello user</h1> : <h1>Hello admin</h1> : null
+  return authenticated ? role == 'user' ? <UserHome /> : <Dashboard /> : null
 };
 export default AuthComponent;

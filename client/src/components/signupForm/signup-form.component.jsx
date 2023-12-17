@@ -39,7 +39,7 @@ const LoginForm = () => {
       <InputLabel label='username' type='text' name='username' inputChange={onInputChange} value={username} />
       <InputLabel label='email' type='email' name='email' inputChange={onInputChange} value={email} />
       <InputLabel label='password' type='password' name='password' inputChange={onInputChange} value={password} />
-      <Button onClick={signupClick} text={'Signup'} backgroundColor={'#2196f3'} />
+      <Button onClick={signupClick} text={'Signup'} backgroundColor={'#e91e63'} />
     </div>
   )
 }
