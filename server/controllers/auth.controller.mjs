@@ -14,6 +14,7 @@ export async function login(req, res) {
     const { password: hashedPassword, _id, firstname, lastname, createdAt, updatedAt, __v, ...userDetails } = user.toJSON()//userDetails is username , email
     const token = jwt.sign(userDetails, process.env.SECRET_KEY, { expiresIn: "2 days" })
     return res.status(200).send({
+      user: userDetails,
       token
     })
   } catch (error) {
@@ -35,10 +36,13 @@ export async function register(req, res) {
     password,
     role
   })
+
   const token = jwt.sign({ username, email, role }, process.env.SECRET_KEY, { expiresIn: "2 days" })
   await user.save()
   return res.status(200).send({
-    user: user,
+    username,
+    email,
+    role,
     token
   })
 }

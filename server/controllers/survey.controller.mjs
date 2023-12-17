@@ -19,9 +19,6 @@ export async function createSurvey(req, res) {
     return res.status(500).json({ error })
   }
 }
-export async function assignSurvey(req, res) {
-
-}
 export async function getAllSurveys(req, res) {
   const surveys = await Survey.find()
   return res.status(200).json({ surveys })

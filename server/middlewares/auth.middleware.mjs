@@ -7,7 +7,7 @@ export async function authMiddleware(req, res, next) {
   else {
     const decoded = jwt.verify(token, process.env.SECRET_KEY);
     const user = await User.findOne({ email: decoded.email }).select('-password');
-    req.user = user;
+    req.user = user;//this is the authenticated user
     next()
   }
 }
