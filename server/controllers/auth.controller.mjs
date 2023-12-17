@@ -22,8 +22,10 @@ export async function login(req, res) {
   }
 }
 export async function register(req, res) {
-  const { username, firstname, lastname, email, password, role } = req.body
-  if (!username || !firstname || !lastname || !email || !password || !role)
+  let { username, firstname, lastname, email, password, role } = req.body
+  if (!role)
+    role = 'user'
+  if (!username || !firstname || !lastname || !email || !password)
     return res.status(500).send({ message: "Missing credentials" })
   let user = await User.findOne({ email })
   if (user)
