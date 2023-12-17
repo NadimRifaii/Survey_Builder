@@ -1,0 +1,30 @@
+.input-label-holder {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+input {
+  display: block;
+  border: none;
+  outline: none;
+  background-color: #eee;
+  padding: 10px 20px;
+  width: 300px;
+  border-radius: 8px;
+  font-size: 18px;
+}
+
+label {
+  position: absolute;
+  left: 10px;
+  top: 11px;
+  text-transform: capitalize;
+  transition: .3s;
+  pointer-events: none;
+}
+
+input:focus+label,
+label.active {
+  top: -16px;
+  font-size: 12px;
+}
