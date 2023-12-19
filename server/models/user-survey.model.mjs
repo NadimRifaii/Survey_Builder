@@ -10,7 +10,15 @@ const userSurveySchema = new mongoose.Schema({
     ref: "Survey",
     required: true
   },
-  completedAt: Date
+  completedAt: Date,
+  answers: [
+    {
+      question: {
+        type: String
+      },
+      answers: [String]
+    }
+  ]
 })
 const UserSurvey = mongoose.model('UserSurvey', userSurveySchema)
 export default UserSurvey
