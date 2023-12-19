@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom"
 //import functions
 import { setUser } from "../../core/redux/user/userSlice"
 import { request } from "../../core/axios/axios"
+// css imports
+import './login-form.styles.css'
 const defaultFields = {
   email: "",
   password: ''
@@ -33,7 +35,7 @@ const LoginForm = () => {
     <div className="login-form">
       <InputLabel label='email' type='email' name='email' inputChange={onInputChange} value={email} />
       <InputLabel label='password' type='password' name='password' inputChange={onInputChange} value={password} />
-      <Button onClick={loginClick} text={'Login'} backgroundColor={'#2196f3'} />
+      <Button onClick={loginClick} btnText={'Login'} backgroundColor={'#2196f3'} />
     </div>
   )
 }

@@ -8,4 +8,25 @@
 .forms-container {
   display: flex;
   gap: 30px;
+  /* height: 335px; */
+}
+
+.forms-container button {
+  width: 100%;
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.nav-container button {
+  margin: 0;
+  color: black;
+  background-color: transparent;
+  width: fit-content;
+  margin-top: 10px;
+  font-weight: normal;
 }

@@ -20,7 +20,7 @@ const AuthComponent = () => {
       setAuthenticated(false);
       navigate('/auth');
     }
-  }, [user, navigate]);
+  }, [user]);
 
   return authenticated ? role == 'user' ? <UserHome /> : <Dashboard /> : null
 };

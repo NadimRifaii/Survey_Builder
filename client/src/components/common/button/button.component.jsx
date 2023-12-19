@@ -1,10 +1,13 @@
 // css imports
 import './button.styles.css'
-const Button = ({ text, backgroundColor, onClick }) => {
+const Button = ({ text, btnText, backgroundColor, onClick, active }) => {
   return (
-    <button style={{
-      backgroundColor: backgroundColor
-    }} onClick={onClick} >{text}</button>
+    <div className={`btn-container ${active}`}>
+      <span>{text}</span>
+      <button style={{
+        backgroundColor: backgroundColor
+      }} onClick={onClick} >{btnText}</button>
+    </div>
   )
 }
 export default Button

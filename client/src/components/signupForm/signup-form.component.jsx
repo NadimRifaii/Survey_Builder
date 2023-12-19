@@ -3,9 +3,12 @@ import InputLabel from "../common/inputLabel/input-label.component"
 // hooks imports
 import { useState } from "react"
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from "react-router-dom"
 //import functions
 import { request } from "../../core/axios/axios"
 import { setUser, extractUserSlice } from "../../core/redux/user/userSlice"
+// css imports
+import './signup-form.styles.css'
 const defaultFields = {
   firstname: "",
   lastname: '',
@@ -16,9 +19,9 @@ const defaultFields = {
 const LoginForm = () => {
   const [fields, setFields] = useState(defaultFields)
   const { firstname, lastname, username, email, password } = fields
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const user = useSelector(extractUserSlice)
-  console.log(user)
   const onInputChange = (e) => {
     setFields({ ...fields, [e.target.name]: e.target.value })
   }
@@ -27,7 +30,7 @@ const LoginForm = () => {
       const data = await request(`auth/register`, 'POST', fields)
       setFields({ ...defaultFields })
       dispatch(setUser(data.user))
-      console.log(user)
+      navigate('/home')
     } catch (error) {
       console.log(error)
     }
@@ -39,7 +42,7 @@ const LoginForm = () => {
       <InputLabel label='username' type='text' name='username' inputChange={onInputChange} value={username} />
       <InputLabel label='email' type='email' name='email' inputChange={onInputChange} value={email} />
       <InputLabel label='password' type='password' name='password' inputChange={onInputChange} value={password} />
-      <Button onClick={signupClick} text={'Signup'} backgroundColor={'#e91e63'} />
+      <Button onClick={signupClick} btnText={'Signup'} backgroundColor={'#e91e63'} />
     </div>
   )
 }
