@@ -19,10 +19,10 @@ const AuthPage = () => {
           }
         </div>
         <div className="nav-container">
-          <Button text={"Already have an account?"} btnText={'Login'} onClick={() => {
+          <Button text={"Already have an account?"} btnText={'Login'} clas='link' onClick={() => {
             toggleForm('Login')
           }} active={currentForm == 'Signup' ? '' : 'none'} />
-          <Button text={"Don't have an account?"} btnText={'Signup'} onClick={() => {
+          <Button text={"Don't have an account?"} btnText={'Signup'} clas='link' onClick={() => {
             toggleForm('Signup')
           }} active={currentForm == 'Login' ? '' : 'none'} />
         </div>

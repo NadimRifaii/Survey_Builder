@@ -1,0 +1,45 @@
+header {
+  padding: 10px 20px;
+  background-color: steelblue;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+header .profile {
+  width: 30px;
+  height: 30px;
+  background-color: #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+  display: block;
+}
+
+.profile+.menu {
+  position: absolute;
+  top: 100%;
+  right: 20px;
+  background-color: #ccc;
+  color: white;
+  display: none;
+}
+
+.profile.clicked+.menu {
+  display: block;
+}
+
+.profile+.menu a {
+  text-decoration: none;
+  color: black;
+  padding: 5px 15px;
+  display: block;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}

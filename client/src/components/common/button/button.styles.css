@@ -14,7 +14,7 @@ button {
   display: none;
 }
 
-.btn-container button {
+.btn-container button.link {
   display: inline;
   text-decoration: underline;
   color: blue !important;

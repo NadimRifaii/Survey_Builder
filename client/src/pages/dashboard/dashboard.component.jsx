@@ -1,6 +1,14 @@
+// components imports
+import Header from "../../components/common/header/header.component"
+import SurveysContainer from "../../components/surveysContainer/surveys-container.component"
+// css imports
+import './dashboard.styles.css'
 const Dashboard = () => {
   return (
-    <h1>This is dashboard</h1>
+    <div className="dashboard">
+      <Header />
+      <SurveysContainer />
+    </div>
   )
 }
 export default Dashboard

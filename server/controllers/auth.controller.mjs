@@ -11,7 +11,7 @@ export async function login(req, res) {
     // const isValidPassword = password == user.password
     if (!isValidPassword)
       return res.status(404).json({ message: "Invalid password" })
-    const { password: hashedPassword, _id, firstname, lastname, createdAt, updatedAt, __v, ...userDetails } = user.toJSON()//userDetails is username , email
+    const { password: hashedPassword, _id, firstname, lastname, createdAt, updatedAt, __v, ...userDetails } = user.toJSON()//userDetails is username , email,role
     const token = jwt.sign(userDetails, process.env.SECRET_KEY, { expiresIn: "2 days" })
     return res.status(200).send({
       user: userDetails,
@@ -42,9 +42,10 @@ export async function register(req, res) {
   const token = jwt.sign({ username, email, role }, process.env.SECRET_KEY, { expiresIn: "2 days" })
   await user.save()
   return res.status(200).send({
-    username,
-    email,
-    role,
+    user: {
+      username,
+      email, role
+    },
     token
   })
 }

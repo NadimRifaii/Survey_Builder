@@ -30,6 +30,7 @@ const LoginForm = () => {
       const data = await request(`auth/register`, 'POST', fields)
       setFields({ ...defaultFields })
       dispatch(setUser(data.user))
+      localStorage.setItem('token', data.token)
       navigate('/home')
     } catch (error) {
       console.log(error)
