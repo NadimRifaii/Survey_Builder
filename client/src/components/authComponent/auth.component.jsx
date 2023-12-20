@@ -13,7 +13,7 @@ const AuthComponent = () => {
   const [authenticated, setAuthenticated] = useState(false);
   const [role, setRole] = useState('user')
   useEffect(() => {
-    if (user.username !== '' && user.email !== '' && user.role !== '') {
+    if (user.username !== '' && user.email !== '' && user.role !== '' && localStorage.getItem('token')) {
       setAuthenticated(true);
       setRole(user.role)
     } else {
