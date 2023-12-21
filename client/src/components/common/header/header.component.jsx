@@ -1,6 +1,7 @@
 // hooks imports
 import { useSelector } from "react-redux";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 // functions imports
 import { extractUserSlice } from "../../../core/redux/user/userSlice";
 // css imports
@@ -11,11 +12,17 @@ import Button from "../button/button.component";
 const Header = () => {
   const user = useSelector(extractUserSlice)
   const [profileClicked, setProfileClicked] = useState(false)
+  const navigate = useNavigate()
   return (
     <header>
       <div className="username">{user.username}</div>
       <div className="nav">
-        <Button btnText={"Create survey"} backgroundColor={'transparent'} />
+        {
+          user.role == 'admin' &&
+          <Button btnText={"Create survey"} onClick={() => {
+            navigate('/create-survey')
+          }} backgroundColor={'transparent'} />
+        }
         <div className="logout">
           <img alt="" onClick={() => {
             setProfileClicked(!profileClicked)

@@ -31,6 +31,23 @@ export async function getUserSurveys(req, res) {
   for (let userSurvey of userSurveys) {
     const survey = await Survey.findOne({ _id: userSurvey.surveyId })
     surveys.push(survey)
+    break;
   }
-  return res.status(200).json({ surveys })
+  const firstSurvey = surveys[0]
+  const questions = surveys[0].questions
+  questions.push({
+    "question": "Second question",
+    "questionType": "text",
+    "options": [],
+    "answers": [
+      "answer 1"
+    ]
+  })
+  return res.status(200).json({ firstSurvey, questions })
 }
+
+/**
+ * The populate('surveyId') function in Mongoose is used for populating the data inside the reference1.
+ *  In MongoDB, population is the process of replacing the specified path in the document of one collection
+ *  with the actual document from the other collection1
+ */

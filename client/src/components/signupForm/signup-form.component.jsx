@@ -23,7 +23,7 @@ const LoginForm = () => {
   const dispatch = useDispatch()
   const user = useSelector(extractUserSlice)
   const onInputChange = (e) => {
-    setFields({ ...fields, [e.target.name]: e.target.value })
+    setFields({ ...fields, [e.target.name]: e.target.value })//
   }
   const signupClick = async () => {
     try {

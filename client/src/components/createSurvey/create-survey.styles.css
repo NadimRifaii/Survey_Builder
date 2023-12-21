@@ -1,0 +1,14 @@
+.container {
+  width: 600px;
+  margin: 20px auto;
+}
+
+.container>div:not(.btn-container) {
+  padding: 10px;
+  background-color: steelblue;
+  margin-bottom: 10px;
+}
+
+.survey-title input {
+  width: 100%;
+}

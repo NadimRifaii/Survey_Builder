@@ -1,6 +1,19 @@
 import UserSurvey from "../models/user-survey.model.mjs";
 import User from "../models/user.model.mjs";
 import Survey from "../models/survey.model.mjs";
+export async function findSurvey(surveyTitle) {
+  const userId = req.user._id;
+  try {
+    const userSurveys = await UserSurvey.find({ userId }).populate('surveyId')
+    const survey = userSurveys.filter(userSurvey => {
+      console.log(userSurvey.surveyId)
+      return userSurvey.surveyId.title == surveyTitle
+    })
+    return survey
+  } catch (error) {
+    return null
+  }
+}
 export async function createUserSurvey(req, res) {
   const { surveyId } = req.body
   const userId = req.user._id
@@ -24,6 +37,5 @@ export async function createUserSurvey(req, res) {
     return res.status(200).json({ newUserSurvey, surveyName: surveyExists.title })
   } catch (error) {
     return res.status(500).json({ error })
-    console.log(error)
   }
 } 
